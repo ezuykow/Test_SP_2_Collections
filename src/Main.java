@@ -32,7 +32,7 @@ public class Main {
             if (o == null || getClass() != o.getClass()) return false;
 
             Task task = (Task) o;
-            return a * b == task.a * task.b;
+            return ((a == task.a && b == task.b) || (a == task.b && b == task.a));
         }
 
         @Override
