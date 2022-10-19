@@ -4,26 +4,25 @@ import java.util.Set;
 public class Main {
 
     public static void main(String[] args) {
-
         Set<Task> set = new HashSet<>(15);
-
         while (set.size() < 15) {
             set.add(new Task());
         }
-
         set.forEach(t -> System.out.println(t.getTask()));
     }
 
     private static class Task {
-        private final int a, b;
+        private final String s, rs;
 
         Task() {
-           a = (int) (Math.random() * 8 + 2);
-           b = (int) (Math.random() * 8 + 2);
+            int a = (int) (Math.random() * 8 + 2);
+            int b = (int) (Math.random() * 8 + 2);
+            s = String.format("%d * %d", a, b);
+            rs = String.format("%d * %d", b, a);
         }
 
         String getTask() {
-            return String.format("%d * %d", a, b);
+            return s;
         }
 
         @Override
@@ -32,12 +31,12 @@ public class Main {
             if (o == null || getClass() != o.getClass()) return false;
 
             Task task = (Task) o;
-            return ((a == task.a && b == task.b) || (a == task.b && b == task.a));
+            return (s.equals(task.s) || s.equals(task.rs));
         }
 
         @Override
         public int hashCode() {
-            return a * b;
+            return s.hashCode() + rs.hashCode();
         }
     }
 }
