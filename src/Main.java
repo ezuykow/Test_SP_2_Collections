@@ -32,16 +32,12 @@ public class Main {
             if (o == null || getClass() != o.getClass()) return false;
 
             Task task = (Task) o;
-
-            if (a != task.a) return false;
-            return b == task.b;
+            return a * b == task.a * task.b;
         }
 
         @Override
         public int hashCode() {
-            int result = a;
-            result = 31 * result + b;
-            return result;
+            return a * b;
         }
     }
 }
